@@ -1,6 +1,4 @@
 <Solution>
-  <Project Path="Distributed.Caching/Distributed.Caching.csproj" />
-  <Project Path="InMemory.Caching/InMemory.Caching.csproj" />
   <Project Path="Redis.Pub.Sub.Example/Redis.Pub.Sub.Publisher.Example.csproj" />
   <Project Path="Redis.Pub.Sub.Subscriber.Example/Redis.Pub.Sub.Subscriber.Example.csproj" />
 </Solution>

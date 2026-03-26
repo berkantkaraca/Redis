@@ -7,7 +7,7 @@ namespace InMemory.Caching.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        readonly IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache;
 
         public ValuesController(IMemoryCache memoryCache)
         {
@@ -51,9 +51,16 @@ namespace InMemory.Caching.Controllers
         }
 
         [HttpGet("getDate")]
-        public DateTime GetDate()
+        public IActionResult GetDate()
         {
-            return _memoryCache.Get<DateTime>("date");
+            // "date" anahtarı cache'de var mı kontrol et, varsa 'cachedDate' değişkenine ata
+            if (_memoryCache.TryGetValue("date", out DateTime cachedDate))
+            {
+                return Ok(cachedDate);
+            }
+
+            // Değer bulunamadıysa bir hata veya boş değer dönebilirsiniz
+            return NotFound("Tarih bilgisi cache içerisinde bulunamadı.");
         }
     }
 }
